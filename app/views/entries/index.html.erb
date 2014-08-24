@@ -1,0 +1,55 @@
+<h1><%= @begin_time.strftime("%Y年%m月")%>--消费统计</h1>
+
+<table >
+  <thead>
+    <tr>
+      <th>记录人</th>
+      <th>金额（元）</th>
+      <th>差值（元）</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%average = @results.values.sum / @results.values.count%>
+    <% @results.each do |key, val| %>
+      <tr>
+        <td><%= key %></td>
+        <td><%= (val / 100.0).round(2) %></td>
+        <td><%= ((val - average) / 100.0).round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<h1>消费明细</h1>
+<%= link_to '新建', new_entry_path %>
+
+<table >
+  <thead>
+    <tr>
+      <th>记录人</th>
+      <th>类型</th>
+      <th>金额（元）</th>
+      <th>时间</th>
+      <th>备注信息</th>
+      <th colspan="3">操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.user.name %></td>
+        <td><%= entry.cost_type.name %></td>
+        <td><%= entry.price %></td>
+        <td><%= entry.real_time.to_s(:db) %></td> <td><%= entry.desc %></td>
+        <td><%= link_to '编辑', edit_entry_path(entry) %></td>
+        <td><%#= link_to '删除', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @entries%>
+
+<br>
+

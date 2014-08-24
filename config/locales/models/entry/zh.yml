@@ -1,0 +1,7 @@
+zh:
+  active_record:
+    models:
+      entry: 消费记录
+    attributes:
+      user_id: 用户名称
+

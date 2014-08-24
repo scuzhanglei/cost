@@ -1,0 +1,24 @@
+<h1>Listing cost_types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> 名称</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cost_types.each do |cost_type| %>
+      <tr>
+        <td><%= cost_type.name %></td>
+        <td><%= link_to 'Edit', edit_cost_type_path(cost_type) %></td>
+        <td><%#= link_to 'Destroy', cost_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新建类型', new_cost_type_path %>

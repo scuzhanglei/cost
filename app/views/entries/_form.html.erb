@@ -1,0 +1,37 @@
+<%= form_for(@entry) do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% @entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '记录人' %><br>
+    <%= f.select :user_id, generate_user_options(f.object.user_id) %>
+  </div>
+  <div class="field">
+    <%= f.label "时间" %><br>
+    <%= f.datetime_select :real_time %>
+  </div>
+  <div class="field">
+    <%= f.label "类型" %><br>
+    <%= f.select :cost_type_id, generate_cost_type_options(f.object.cost_type_id) %>
+  </div>
+  <div class="field">
+    <%= f.label "金额（元）" %><br>
+    <%= f.text_field :price, value: f.object.price %>
+  </div>
+  <div class="field">
+    <%= f.label "备注信息（可选）" %><br>
+    <%= f.text_field :desc %>
+  </div>
+  <div class="actions">
+    <%= f.submit "提交" %>
+  </div>
+<% end %>
