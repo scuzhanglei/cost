@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <%average = @results.values.sum / @results.values.count%>
+    <%average = @results.values.sum / User.count rescue 0%>
     <% @results.each do |key, val| %>
       <tr>
         <td><%= key %></td>
