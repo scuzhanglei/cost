@@ -1,21 +1,21 @@
 <h1><%= @begin_time.strftime("%Y年%m月")%>--消费统计</h1>
+<%average = @results.values.sum / User.count rescue 0%>
 
 <table >
   <thead>
     <tr>
       <th>记录人</th>
-      <th>金额（元）</th>
-      <th>差值（元）</th>
+      <th>金额（<%=(@results.values.sum / 100.0).round(2)%>元）</th>
+      <th>差值（<%=(average / 100.0).round(2)%>元）</th>
     </tr>
   </thead>
 
   <tbody>
-    <%average = @results.values.sum / User.count rescue 0%>
-    <% @results.each do |key, val| %>
+    <% User.all.each do |user| %>
       <tr>
-        <td><%= key %></td>
-        <td><%= (val / 100.0).round(2) %></td>
-        <td><%= ((val - average) / 100.0).round(2) %></td>
+        <td><%= user.name %></td>
+        <td><%= (@results[user.id].to_i / 100.0).round(2) %></td>
+        <td><%= ((@results[user.id].to_i - average) / 100.0).round(2) %></td>
       </tr>
     <% end %>
   </tbody>
