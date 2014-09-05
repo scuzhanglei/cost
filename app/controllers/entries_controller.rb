@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
   def index
     @begin_time = Date.parse(params[:date]).beginning_of_month rescue Date.today.beginning_of_month
     end_time = @begin_time.end_of_month
-    @results = Entry.includes(:user).where('real_time >= ? AND real_time <= ?' , @begin_time, end_time).group(:name).sum(:price)
+    @results = Entry.where('real_time >= ? AND real_time <= ?' , @begin_time, end_time).group(:user_id).sum(:price)
     @entries = Entry.includes(:user, :cost_type).order('real_time DESC').page(params[:page]).per(30)
   end
 
