@@ -17,3 +17,9 @@
 /config/database.yml
 /.ruby-version
 /.ruby-gemset
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+*.swp
+*.swo
