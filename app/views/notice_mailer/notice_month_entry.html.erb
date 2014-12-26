@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%=@date.month%>月消费记录明细</h1>
+    <table >
+      <thead>
+        <tr>
+          <th>记录人</th>
+          <th>类型</th>
+          <th>金额（元）</th>
+          <th>时间</th>
+          <th>备注信息</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @entries.each do |entry| %>
+            <tr>
+            <td><%= entry.user.name %></td>
+            <td><%= entry.cost_type.name %></td>
+            <td><%= entry.price %></td>
+            <td><%= entry.real_time.to_s(:db) %></td>
+            <td><%= entry.desc %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </body>
+</html>
