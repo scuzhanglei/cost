@@ -43,7 +43,7 @@
           <td><%= entry.cost_type.name %></td>
           <td><%= entry.price %></td>
           <td><%= entry.real_time.to_s(:db) %></td> <td><%= entry.desc %></td>
-          <%if current_user.id == entry.user_id%>
+          <%if current_user.try(:id) == entry.user_id%>
             <td><%= link_to '编辑', edit_admin_entry_path(entry) %></td>
           <%else%>
             <td><%= link_to '查看', admin_entry_path(entry) %></td>
