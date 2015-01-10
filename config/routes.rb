@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  root 'entries#index'
-  resources :cost_types
+  root 'admin/entries#index'
 
-  resources :entries do
-    collection do
-      get 'month_stat'
+  namespace :admin do
+    resources :cost_types
+    resources :entries do
+      collection do
+        get 'month_stat'
+      end
     end
   end
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 
   resources :users
 
