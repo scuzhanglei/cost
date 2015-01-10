@@ -32,4 +32,5 @@ gem 'devise'
 
 # Use unicorn as the app server
  gem 'unicorn'
+ gem 'thin'
 
