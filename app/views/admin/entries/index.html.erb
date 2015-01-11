@@ -1,7 +1,7 @@
 
 <h1><%= @begin_time.strftime("%Y年%m月")%>--消费统计</h1>
 <%average = @results.values.sum / User.count rescue 0%>
-  <table class='table' >
+  <table class='table well' >
     <thead>
       <tr>
         <th>记录人</th>
@@ -24,7 +24,7 @@
   <h1>消费明细</h1>
   <%= link_to '新建', new_admin_entry_path %>
 
-  <table class='table' >
+  <table class='table well' >
     <thead>
       <tr>
         <th>记录人</th>

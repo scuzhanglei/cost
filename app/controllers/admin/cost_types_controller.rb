@@ -1,6 +1,9 @@
 module Admin
   class CostTypesController < AdminController
     before_action :set_cost_type, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!
+    before_action :check_admin
+    layout 'admin'
 
     # GET /cost_types
     # GET /cost_types.json
@@ -29,11 +32,9 @@ module Admin
 
       respond_to do |format|
         if @cost_type.save
-          format.html { redirect_to @cost_type, notice: 'Cost type was successfully created.' }
-          format.json { render :show, status: :created, location: @cost_type }
+          format.html { redirect_to admin_cost_types_path, notice: '创建成功！' }
         else
-          format.html { render :new }
-          format.json { render json: @cost_type.errors, status: :unprocessable_entity }
+          format.html { render :new, notice: '创建失败！' }
         end
       end
     end
@@ -43,7 +44,7 @@ module Admin
     def update
       respond_to do |format|
         if @cost_type.update(cost_type_params)
-          format.html { redirect_to @cost_type, notice: 'Cost type was successfully updated.' }
+          format.html { redirect_to admin_cost_types_path, notice: '修改成功！' }
           format.json { render :show, status: :ok, location: @cost_type }
         else
           format.html { render :edit }

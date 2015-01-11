@@ -15,36 +15,42 @@
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
     </div-->
     <nav class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-      </div>
-    </div><!-- /.container -->
+      <div class="container">
+        <div class="navbar-header">
+        </div>
+      </div><!-- /.container -->
 
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">首页</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">关于我</a></li>
-        <li><a href="<%= new_user_registration_path%>">注册</a></li>
-        <li><a href="<%= new_user_session_path%>">登录</a></li>
-      </ul>
-    </div><!-- /.nav-collapse -->
-  </div><!-- /.nav-collapse -->
-  </nav><!-- /.navbar -->
-  <div class='row'>
-    <div class='col-md-3'>
-      <nav class="navbar navbar-inverse" role="navigation">
-      <ul class="nav nav-pills nav-stacked" role="tablist">
-        <li role="presentation" class="active"><a href="<%= admin_entries_path %>">记账系统</a></li>
-        <li role="presentation"><a href="<%= new_admin_entry_path%>">新建记录</a></li>
-        <li role="presentation"><a href="#">Messages</a></li>
-      </ul>
-  </nav><!-- /.navbar -->
-  </div>
-  <div class='col-md-9'>
-    <%= yield%>
-  </div>
-</div>
-</body>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active1"><a href="#">首页</a></li>
+          <li><a href="#contact">关于我</a></li>
+        </ul>
+        <div class="topnav pull-right">
+          <div class="btn-group">
+            <li class='pull-rignth'><%= user_info%></li>
+          </div>
+        </div>
+      </div><!-- /.nav-collapse -->
+    </nav><!-- /.navbar -->
+    <div class="bg-dark dker " id="wrap">
+      <div class='col-md-3'>
+        <div class="btn-group btn-group-justified">
+          <ul id="menu" class="bg-blue dker">
+            <li class="active1"><a class='btn', href="<%= admin_entries_path %>">记账系统</a></li>
+            <ul>
+              <li><a class='btn', href="<%= admin_entries_path%>">消费记录列表</a></li>
+              <li><a class='btn', href="<%= admin_cost_types_path%>">消费类型列表</a></li>
+            </ul>
+            <% if admin?%>
+              <li class="active1"><a class='btn', href="<%= admin_users_path %>">用户管理</a></li>
+            <%end %>
+          </ul>
+        </div>
+      </div>
+      <div class='col-md-9'>
+        <%= yield%>
+      </div>
+    </div>
+  </body>
 </html>
 

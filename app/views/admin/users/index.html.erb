@@ -1,0 +1,24 @@
+<h1>用户列表</h1>
+
+<table class='table well'>
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>邮箱</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to '编辑', edit_admin_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @users%>
+
+<br>

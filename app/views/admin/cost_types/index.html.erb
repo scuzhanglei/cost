@@ -1,0 +1,20 @@
+<h1>消费类型列表</h1>
+<%= link_to '新建', new_admin_cost_type_path %>
+<table class="table well">
+  <thead>
+    <tr>
+      <th> 名称</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cost_types.each do |cost_type| %>
+      <tr>
+        <td><%= cost_type.name %></td>
+        <td><%= link_to '编辑', edit_admin_cost_type_path(cost_type) %></td>
+        <td><%#= link_to 'Destroy', cost_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

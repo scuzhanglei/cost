@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'admin/entries#index'
 
   namespace :admin do
-    resources :cost_types
-    resources :entries do
+    resources :users, only: [:index, :edit, :update]
+    resources :cost_types, except: [:destroy, :delete]
+    resources :entries, except: [:destroy, :delete] do
       collection do
         get 'month_stat'
       end
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
   end
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 
-  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

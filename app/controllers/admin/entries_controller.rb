@@ -3,6 +3,7 @@ module Admin
     before_action :set_entry, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
     before_action :must_self_entry!, only: [:edit, :update]
+    before_action :check_admin, except: [:index]
     layout  'admin'
 
     # GET /entries

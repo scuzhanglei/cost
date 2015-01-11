@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :entries
   validate :name, presence: true, unique: true
+  USER_TYPE_ADMIN = 2
+  def admin?
+    user_type == USER_TYPE_ADMIN
+  end
 end
