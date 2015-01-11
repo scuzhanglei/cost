@@ -22,7 +22,7 @@ module Admin
 
     # GET /entries/new
     def new
-      @entry = Entry.new
+      @entry = Entry.new(real_time: Time.now)
     end
 
     # GET /entries/1/edit
@@ -54,8 +54,7 @@ module Admin
     def update
       respond_to do |format|
         if @entry.update(entry_params)
-          format.html { redirect_to @entry, notice: '更新成功。.' }
-          format.json { render :show, status: :ok, location: @entry }
+          format.html { redirect_to admin_entries_path, notice: '更新成功。.' }
         else
           format.html { render :edit }
           format.json { render json: @entry.errors, status: :unprocessable_entity }
