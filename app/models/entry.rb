@@ -12,6 +12,10 @@ class Entry < ActiveRecord::Base
   end
 
   def notice_email
-    NoticeWorker.perform_async(id)
+    begin
+      NoticeWorker.perform_async(id)
+    rescue => e
+      Rails.logger.error e
+    end
   end
 end
